@@ -14,7 +14,7 @@ A simple and responsive weather application built with React that allows users t
 
 ## Demo
 
-![Weather App Demo](https://x-weather-app-wine-nu.vercel.app/)
+[Weather App Demo](https://x-weather-app-wine-nu.vercel.app/)
 
 ## Technologies Used
 
