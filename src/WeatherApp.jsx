@@ -1,9 +1,7 @@
-// Import required dependencies
 import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
 
-// Define the main WeatherApp component
 const WeatherApp = () => {
   const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState(null);
@@ -16,16 +14,20 @@ const WeatherApp = () => {
       return;
     }
 
+    // Set loading state before the API call
     setLoading(true);
     setError('');
     setWeatherData(null);
 
     try {
+      // Add artificial delay to ensure loading state is visible
+      await new Promise(resolve => setTimeout(resolve, 100));
+      
       const response = await axios.get(
         'https://api.weatherapi.com/v1/current.json',
         {
           params: {
-            key: 'ee48c906527044d7b6674616250401', // Replace with your actual API key
+            key: 'ee48c906527044d7b6674616250401',
             q: city,
           },
         }
@@ -40,29 +42,43 @@ const WeatherApp = () => {
   };
 
   return (
-    <div className="weather-app">
+    <div className="weather-app" data-testid="weather-app">
       <h1>Weather Application</h1>
 
-      {/* Search bar */}
       <div className="search-bar">
         <input
           type="text"
           placeholder="Enter city name"
           value={city}
           onChange={(e) => setCity(e.target.value)}
+          data-testid="city-input"
         />
-        <button className="btn" onClick={handleSearch}>Search</button>
+        <button 
+          className="btn" 
+          onClick={handleSearch}
+          data-testid="search-button"
+        >
+          Search
+        </button>
       </div>
 
-      {/* Loading message */}
-      {loading && <p>Loading data…</p>}
+      {/* Loading state with test id */}
+      {loading && (
+        <div className="loading-state" data-testid="loading-state">
+          <p>Loading weather data...</p>
+        </div>
+      )}
 
       {/* Error message */}
-      {error && <p className="error-message">{error}</p>}
+      {error && (
+        <p className="error-message" data-testid="error-message">
+          {error}
+        </p>
+      )}
 
       {/* Weather data display */}
       {weatherData && (
-        <div className="weather-cards">
+        <div className="weather-cards" data-testid="weather-data">
           <div className="weather-card">
             <h3>Temperature</h3>
             <p>{weatherData.current.temp_c} °C</p>
