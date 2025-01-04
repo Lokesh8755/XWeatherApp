@@ -37,3 +37,10 @@ button {
 .error-message {
   color: red;
 }
+
+.btn{
+  background-color: orange;
+  border:none;
+  border-radius: 5px;
+  color:#fff;
+}

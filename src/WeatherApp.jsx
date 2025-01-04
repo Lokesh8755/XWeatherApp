@@ -51,7 +51,7 @@ const WeatherApp = () => {
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
-        <button onClick={handleSearch}>Search</button>
+        <button className="btn" onClick={handleSearch}>Search</button>
       </div>
 
       {/* Loading message */}
